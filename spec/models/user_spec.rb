@@ -1,17 +1,12 @@
 require 'rails_helper'
 
 describe User, type: :model do
-  let(:name) { Faker::Name.name }
-  let(:phone_number) { Faker::PhoneNumber.phone_number }
-  let(:user) { FactoryGirl.create(:user, name: name, phone_number: phone_number) }
+  describe "phone number bug" do
+    let(:phone_number) { "+1 (347) 513-1236 " }
+    let(:user) { FactoryGirl.create(:user, phone_number: phone_number) }
 
-  describe "some stupid tests for now" do
-    it 'returns the phone number' do
-      expect(user.name).to eq(name)
-    end
-
-    it 'returns the user name' do
-      expect(user.phone_number).to eq(phone_number)
+    it 'sanitizes the phone number' do
+      expect(user.phone_number).to eq('13475131236')
     end
   end
 end
