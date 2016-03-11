@@ -1,3 +1,12 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id           :integer          not null, primary key
+#  name         :string
+#  phone_number :string
+#
+
 require 'rails_helper'
 
 describe User, type: :model do

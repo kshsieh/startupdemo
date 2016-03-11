@@ -1,6 +1,6 @@
 <h1>Users</h1>
 
 <% @users.each do |user| %>
-  <div><strong><%= user.name %></strong></div>
+  <div><strong><%= link_to user.name, user_path(user) %></strong></div>
   <div><%= user.phone_number %></div>
 <% end %>
