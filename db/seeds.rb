@@ -5,3 +5,10 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+puts "CREATING 10 USERS!"
+10.times do
+  user = FactoryGirl.create(:user)
+  puts "Creating posts for user #{ user.name }"
+  rand(10).times { FactoryGirl.create(:post, user: user) }
+end
