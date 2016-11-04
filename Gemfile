@@ -31,6 +31,7 @@ group :development do
 end
 
 group :development, :test do
+  gem 'annotate'
   gem "thin"
   gem "byebug"
   gem 'rspec-rails'

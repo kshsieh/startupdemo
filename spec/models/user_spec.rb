@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id           :integer          not null, primary key
+#  name         :string
+#  phone_number :string
+#  created_at   :datetime
+#  updated_at   :datetime
+#
+
 require 'rails_helper'
 
 describe User, type: :model do
@@ -15,11 +26,24 @@ describe User, type: :model do
     end
   end
 
-  describe 'having many posts' do
-    let!(:post) { FactoryGirl.create(:post) }
+  describe 'associations' do
+    describe 'having many posts' do
+      let!(:post) { FactoryGirl.create(:post, user: user) }
 
-    it 'has many posts' do
-      expect(user.posts.present?).to eq(false)
+      it 'has many posts' do
+        expect(user.posts).to include(post)
+      end
+    end
+
+    describe 'has many seats' do
+      it 'has many seats' do
+        expect(user.seats.present?).to eq(true)
+      end
+    end
+
+    describe 'can attend many courses' do
+      it 'has many courses' do
+      end
     end
   end
 end
