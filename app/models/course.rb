@@ -1,14 +1,12 @@
 # == Schema Information
 #
-# Table name: posts
+# Table name: courses
 #
 #  id         :integer          not null, primary key
-#  user_id    :integer
-#  body       :text
+#  name       :string
 #  created_at :datetime
 #  updated_at :datetime
 #
 
-class Post < ActiveRecord::Base
-  belongs_to :user
+class Course < ActiveRecord::Base
 end

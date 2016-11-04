@@ -11,4 +11,6 @@
 
 class User < ActiveRecord::Base
   has_many :posts
+  has_many :seats
+  has_many :courses, through: :seats
 end

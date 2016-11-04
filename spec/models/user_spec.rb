@@ -36,13 +36,26 @@ describe User, type: :model do
     end
 
     describe 'has many seats' do
+      before do
+        3.times do
+          FactoryGirl.create(:seat, user: user)
+        end
+      end
+
       it 'has many seats' do
         expect(user.seats.present?).to eq(true)
       end
     end
 
     describe 'can attend many courses' do
+      let!(:course) { FactoryGirl.create(:course) }
+
+      before do
+        user.seats.create(course: course)
+      end
+
       it 'has many courses' do
+        expect(user.courses.present?).to eq(true)
       end
     end
   end
