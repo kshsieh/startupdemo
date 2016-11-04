@@ -14,4 +14,12 @@ describe User, type: :model do
       expect(user.phone_number).to eq(phone_number)
     end
   end
+
+  describe 'having many posts' do
+    let!(:post) { FactoryGirl.create(:post) }
+
+    it 'has many posts' do
+      expect(user.posts.present?).to eq(false)
+    end
+  end
 end
