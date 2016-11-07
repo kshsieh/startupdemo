@@ -2,12 +2,22 @@
 #
 # Table name: users
 #
-#  id           :integer          not null, primary key
-#  name         :string
-#  phone_number :string
-#  created_at   :datetime
-#  updated_at   :datetime
-#  email        :string
+#  id                     :integer          not null, primary key
+#  name                   :string
+#  phone_number           :string
+#  created_at             :datetime
+#  updated_at             :datetime
+#  email                  :string
+#  type                   :string
+#  encrypted_password     :string           default(""), not null
+#  reset_password_token   :string
+#  reset_password_sent_at :datetime
+#  remember_created_at    :datetime
+#  sign_in_count          :integer          default("0"), not null
+#  current_sign_in_at     :datetime
+#  last_sign_in_at        :datetime
+#  current_sign_in_ip     :inet
+#  last_sign_in_ip        :inet
 #
 
 require 'rails_helper'
@@ -16,6 +26,24 @@ describe User, type: :model do
   let(:name) { Faker::Name.name }
   let(:phone_number) { Faker::PhoneNumber.phone_number }
   let(:user) { FactoryGirl.create(:user, name: name, phone_number: phone_number) }
+
+  describe 'single table inheritance' do
+    context 'if an owner' do
+      let(:owner) { FactoryGirl.create(:user, :owner) }
+
+      it 'has the correct type' do
+        expect(owner.type).to eq('Owner')
+      end
+    end
+
+    context 'if a customer' do
+      let(:customer) { FactoryGirl.create(:user, :customer) }
+
+      it 'has the correct type' do
+        expect(customer.type).to eq('Customer')
+      end
+    end
+  end
 
   describe 'validations' do
     it 'validates name presence' do

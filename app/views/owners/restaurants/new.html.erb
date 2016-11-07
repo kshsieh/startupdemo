@@ -1,0 +1,9 @@
+<h1>New Restaurant</h1>
+
+<%= form_for [:owners, @restaurant] do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.submit %>
+<% end %>
+
+<%= link_to 'index', owners_restaurants_path %>

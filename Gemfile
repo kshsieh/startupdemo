@@ -24,10 +24,13 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem "bootstrap-sass"
 
+gem "devise"
+
 group :development do
   gem "guard"
   gem "guard-rspec"
   gem "guard-livereload"
+  gem "guard-bundler"
 end
 
 group :development, :test do
